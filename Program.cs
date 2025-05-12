@@ -19,6 +19,8 @@ do
             //Display.PrintAllRecords("Ordinary Drink");
             UI.ReturnToMainMenu();
             break;
+        case "Ordinary Drink":
+            break;
         case "Punch/Party Drink":
             //RecordsController.AddRecord();
             UI.ReturnToMainMenu();
