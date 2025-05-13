@@ -16,3 +16,4 @@ C:\Users\Andrew\Documents\coding stuff\C#\The C# Academy\Drinks\obj\Debug\net8.0
 C:\Users\Andrew\Documents\coding stuff\C#\The C# Academy\Drinks\obj\Debug\net8.0\Drinks.genruntimeconfig.cache
 C:\Users\Andrew\Documents\coding stuff\C#\The C# Academy\Drinks\obj\Debug\net8.0\ref\Drinks.dll
 C:\Users\Andrew\Documents\coding stuff\C#\The C# Academy\Drinks\obj\Debug\net8.0\Drinks.sourcelink.json
+C:\Users\Andrew\Documents\coding stuff\C#\The C# Academy\Drinks\bin\Debug\net8.0\ConsoleTableExt.dll
