@@ -9,7 +9,6 @@ namespace Drinks
         {
             using (var client = new HttpClient())
             {
-
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/");
