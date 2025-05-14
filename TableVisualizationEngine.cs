@@ -1,7 +1,7 @@
 ﻿using ConsoleTableExt;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Drinks
+namespace DrinksInfo
 {
     public class TableVisualizationEngine
     {

@@ -1,52 +1,75 @@
-﻿using Drinks;
+﻿using DrinksInfo;
 
-Console.Title = "Drinks";
-
-string? menuChoice;
-
-do
+class Program
 {
-    menuChoice = UI.MainMenu();
-
-    switch (menuChoice)
+    static async Task Main()
     {
-        case "-Close Application-":
-            Console.WriteLine("\nGoodbye!");
-            Thread.Sleep(2000);
-            Environment.Exit(0);
-            break;
-        case "Cocktail":
-            //Display.PrintAllRecords("Ordinary Drink");
-            UI.ReturnToMainMenu();
-            break;
-        case "Ordinary Drink":
-            break;
-        case "Punch/Party Drink":
-            //RecordsController.AddRecord();
-            UI.ReturnToMainMenu();
-            break;
-        case "Shake":
-            //RecordsController.EditRecord();
-            UI.ReturnToMainMenu();
-            break;
-        case "Other/Unknown":
-            //RecordsController.DeleteRecord();
-            UI.ReturnToMainMenu();
-            break;
-        case "Cocoa":
-            break;
-        case "Shot":
-            break;
-        case "Coffee/Tea":
-            break;
-        case "Homemade Liqueur":
-            break;
-        case "Beer":
-            break;
-        case "Soft Drink":
-            break;
-        default:
-            Console.WriteLine("Invalid choice.");
-            break;
+
+        Console.Title = "Drinks";
+
+        string? menuChoice;
+
+        do
+        {
+            DrinksService drinksService = new DrinksService();
+
+            menuChoice = UI.MainMenu();
+
+            switch (menuChoice)
+            {
+                case "-Close Application-":
+                    Console.WriteLine("\nGoodbye!");
+                    Thread.Sleep(2000);
+                    Environment.Exit(0);
+                    break;
+                case "Cocktail":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Ordinary Drink":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Punch / Party Drink":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Shake":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Other / Unknown":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Cocoa":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Shot":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Coffee / Tea":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Homemade Liqueur":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Beer":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                case "Soft Drink":
+                    await drinksService.GetDrinksByCategory(menuChoice);
+                    UI.ReturnToMainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
+        } while (menuChoice != "Close Application");
     }
-} while (menuChoice != "Close Application");
+}
