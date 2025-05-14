@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Web;
 using DrinksInfo.Models;
+using Drinks.Models;
 
 namespace DrinksInfo
 {
@@ -44,7 +45,7 @@ namespace DrinksInfo
 
                     string responseBody = await response.Content.ReadAsStringAsync();
 
-                    var serialize = JsonSerializer.Deserialize<Drinks>(responseBody);
+                    var serialize = JsonSerializer.Deserialize<DrinksListing>(responseBody);
 
                     if (serialize?.DrinksList == null || serialize.DrinksList.Count == 0)
                     {

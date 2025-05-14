@@ -2,7 +2,7 @@
 
 namespace DrinksInfo.Models
 {
-    public class Drinks
+    public class DrinksListing
     {
         [JsonPropertyName("drinks")]
 
