@@ -28,7 +28,7 @@ namespace DrinksInfo
         //    drinksService.GetDrinksByCategory(category);
         //}
 
-        public static void DrinkSelectionMenu(List<Drink> drinks)
+        public async Task DrinkSelectionMenu(List<Drink> drinks)
         {
             if (drinks == null || drinks.Count == 0)
             {
@@ -43,7 +43,13 @@ namespace DrinksInfo
                 .AddChoices(drinks)
                 .UseConverter(d => $"{d.idDrink}\t\t{d.strDrink}"));
 
-            AnsiConsole.Markup($"[green]You selected: {selectedDrink.strDrink}[/]");
+            //AnsiConsole.Markup($"[green]You selected: {selectedDrink.strDrink}[/]");
+
+            DrinksService drinksService = new DrinksService();
+
+            await drinksService.GetDrink(selectedDrink.strDrink);
+
+
         }
 
         public static void ReturnToMainMenu()

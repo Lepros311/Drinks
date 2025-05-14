@@ -53,7 +53,9 @@ namespace DrinksInfo
                         return;
                     }
 
-                    UI.DrinkSelectionMenu(serialize.DrinksList);
+                    UI ui = new UI();
+
+                    await ui.DrinkSelectionMenu(serialize.DrinksList);
 
                     //var returnedList = serialize.DrinksList;
 
