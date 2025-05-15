@@ -11,9 +11,9 @@ namespace DrinksInfo.Models
 
     public class Drink
     {
-        public string idDrink { get; set; }
+        public string IdDrink { get; set; }
 
-        public string strDrink { get; set; }
+        public string StrDrink { get; set; }
     }
 
 }
