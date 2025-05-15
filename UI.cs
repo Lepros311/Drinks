@@ -47,7 +47,7 @@ namespace DrinksInfo
 
             DrinksService drinksService = new DrinksService();
 
-            await drinksService.GetDrink(selectedDrink.strDrink);
+            await drinksService.GetDrink(selectedDrink.idDrink);
 
 
         }

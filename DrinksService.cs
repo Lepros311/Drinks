@@ -74,7 +74,7 @@ namespace DrinksInfo
             {
                 try
                 {
-                    HttpResponseMessage response = await client.GetAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c={HttpUtility.UrlEncode(drink)}");
+                    HttpResponseMessage response = await client.GetAsync($"https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i={HttpUtility.UrlEncode(drink)}");
 
                     response.EnsureSuccessStatusCode();
 
