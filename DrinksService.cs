@@ -8,30 +8,39 @@ namespace DrinksInfo
 {
     public class DrinksService
     {
-        //public async void GetCategories()
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        try
-        //        {
-        //            HttpResponseMessage response = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/");
+        public async Task<List<Category>> GetCategories()
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list");
 
-        //            response.EnsureSuccessStatusCode();
+                    response.EnsureSuccessStatusCode();
 
-        //            string responseBody = await response.Content.ReadAsStringAsync();
+                    string responseBody = await response.Content.ReadAsStringAsync();
 
-        //            var serialize = JsonSerializer.Deserialize<Categories>(responseBody);
+                    var serialize = JsonSerializer.Deserialize<Categories>(responseBody);
 
-        //            var returnedList = serialize.CategoriesList;
+                    return serialize?.CategoriesList ?? new List<Category>();
 
-        //            TableVisualizationEngine.ShowTable(returnedList, "Categories Menu");
-        //        }
-        //        catch (HttpRequestException e)
-        //        {
-        //            Console.WriteLine($"Request error: {e.Message}");
-        //        }
-        //    }
-        //}
+                    //List<Category> returnedList = serialize.CategoriesList;
+
+                    //return returnedList;
+
+                    //UI ui = new UI();
+
+                    //ui.CategorySelectionMenu(returnedList);
+
+                    //TableVisualizationEngine.ShowTable(returnedList, "Categories Menu");
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine($"Request error: {e.Message}");
+                    return new List<Category>();
+                }
+            }
+        }
 
         public async Task GetDrinksByCategory(string category)
         {
@@ -56,10 +65,6 @@ namespace DrinksInfo
                     UI ui = new UI();
 
                     await ui.DrinkSelectionMenu(serialize.DrinksList);
-
-                    //var returnedList = serialize.DrinksList;
-
-                    //TableVisualizationEngine.ShowTable(returnedList, "Drinks Menu");
                 }
                 catch (HttpRequestException e)
                 {
@@ -106,9 +111,6 @@ namespace DrinksInfo
                             });
                         }
                     }
-
-
-                    //var returnedList = serialize.DrinksList;
 
                     TableVisualizationEngine.ShowTable(prepList, drinkDetail.strDrink);
                 }

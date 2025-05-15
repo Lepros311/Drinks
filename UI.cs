@@ -5,28 +5,25 @@ namespace DrinksInfo
 {
     internal class UI
     {
-        public static string MainMenu()
+        public string CategorySelectionMenu(List<Category> categories)
         {
             Console.Clear();
 
-            var menuChoice = AnsiConsole.Prompt(
-                new SelectionPrompt<string>()
-                .Title("SELECT A CATEGORY")
+            List<Category> modifiedCategories = new List<Category>
+            {
+                new Category { strCategory = "-Close Application-" }
+            };
+            modifiedCategories.AddRange(categories);
+  
+            var selectedCategory = AnsiConsole.Prompt(
+                new SelectionPrompt<Category>()
+                .Title("[bold]SELECT A CATEGORY:[/]")
                 .PageSize(15)
-                .AddChoices(new[]
-                {
-                    "-Close Application-", "Cocktail", "Ordinary Drink", "Punch / Party Drink", "Shake", "Other / Unknown", "Cocoa", "Shot", "Coffee / Tea", "Homemade Liqueur", "Beer", "Soft Drink"
-                }));
+                .AddChoices(modifiedCategories)
+                .UseConverter(c => $"{c.strCategory}"));
 
-            return menuChoice;
+            return selectedCategory.strCategory;
         }
-
-        //public void GetDrinksInput(string category)
-        //{
-        //    DrinksService drinksService = new DrinksService();
-
-        //    drinksService.GetDrinksByCategory(category);
-        //}
 
         public async Task DrinkSelectionMenu(List<Drink> drinks)
         {
@@ -38,23 +35,19 @@ namespace DrinksInfo
 
             var selectedDrink = AnsiConsole.Prompt(
                 new SelectionPrompt<Drink>()
-                .Title("[bold]Select a drink:[/]")
+                .Title("[bold]SELECT A DRINK:[/]")
                 .PageSize(15)
                 .AddChoices(drinks)
                 .UseConverter(d => $"{d.idDrink}\t\t{d.strDrink}"));
 
-            //AnsiConsole.Markup($"[green]You selected: {selectedDrink.strDrink}[/]");
-
             DrinksService drinksService = new DrinksService();
 
             await drinksService.GetDrink(selectedDrink.idDrink);
-
-
         }
 
         public static void ReturnToMainMenu()
         {
-            Console.Write("\nPress any key to return to the Main Menu...");
+            Console.Write("\nPress any key to return to the CATEGORY menu...");
             Console.ReadKey();
         }
     }
