@@ -23,16 +23,6 @@ namespace DrinksInfo
                     var serialize = JsonSerializer.Deserialize<Categories>(responseBody);
 
                     return serialize?.CategoriesList ?? new List<Category>();
-
-                    //List<Category> returnedList = serialize.CategoriesList;
-
-                    //return returnedList;
-
-                    //UI ui = new UI();
-
-                    //ui.CategorySelectionMenu(returnedList);
-
-                    //TableVisualizationEngine.ShowTable(returnedList, "Categories Menu");
                 }
                 catch (HttpRequestException e)
                 {
