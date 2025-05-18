@@ -38,7 +38,7 @@ namespace DrinksInfo
                 .Title("[bold]SELECT A DRINK:[/]")
                 .PageSize(15)
                 .AddChoices(drinks)
-                .UseConverter(d => $"{d.idDrink}\t\t{d.strDrink}"));
+                .UseConverter(d => $"{d.strDrink}"));
 
             DrinksService drinksService = new DrinksService();
 
