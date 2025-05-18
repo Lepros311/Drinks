@@ -1,4 +1,5 @@
 ﻿using ConsoleTableExt;
+using Spectre.Console;
 using System.Diagnostics.CodeAnalysis;
 
 namespace DrinksInfo
@@ -8,14 +9,39 @@ namespace DrinksInfo
         public static void ShowTable<T>(List<T> tableData, [AllowNull] string tableName) where T : class
         {
             Console.Clear();
+            if (tableData == null || tableData.Count == 0)
+            {
+                Console.WriteLine("No data available.");
+                return;
+            }
 
-            if (tableData == null)
-                tableName = "";
+            var table = new Table();
 
-            Console.WriteLine("\n\n");
+            if (!string.IsNullOrEmpty(tableName))
+            {
+                var rule = new Rule($"[green1]{tableName}[/]");
+                rule.Justification = Justify.Left;
+                AnsiConsole.Write(rule);
+            }
 
-            ConsoleTableBuilder.From(tableData).WithColumn(tableName).ExportAndWriteLine();
-            Console.WriteLine("\n\n");
+            table.AddColumn("Property");
+            table.AddColumn("Value");
+            table.HideHeaders();
+
+            foreach (var item in tableData)
+            {
+                var keyProperty = item.GetType().GetProperty("Key");
+                var valueProperty = item.GetType().GetProperty("Value");
+                if (keyProperty != null && valueProperty != null)
+                {
+                    var key = keyProperty.GetValue(item)?.ToString() ?? string.Empty;
+                    var value = valueProperty.GetValue(item)?.ToString() ?? string.Empty;
+                    table.AddRow($"[cyan1]{key}[/]", value);
+                }
+            }
+
+            AnsiConsole.Write(table);
         }
+
     }
 }
