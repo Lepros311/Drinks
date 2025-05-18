@@ -83,7 +83,7 @@ namespace DrinksInfo
 
                     List<object> prepList = new();
 
-                    string formattedName = "";
+                    string formattedName = string.Empty;
 
                     foreach (PropertyInfo prop in drinkDetail.GetType().GetProperties())
                     {

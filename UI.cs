@@ -11,7 +11,7 @@ namespace DrinksInfo
 
             List<Category> modifiedCategories = new List<Category>
             {
-                new Category { StrCategory = "-Close Application-" }
+                new Category { strCategory = "-Close Application-" }
             };
             modifiedCategories.AddRange(categories);
   
@@ -20,9 +20,9 @@ namespace DrinksInfo
                 .Title("[bold]SELECT A CATEGORY:[/]")
                 .PageSize(15)
                 .AddChoices(modifiedCategories)
-                .UseConverter(c => $"{c.StrCategory}"));
+                .UseConverter(c => $"{c.strCategory}"));
 
-            return selectedCategory.StrCategory;
+            return selectedCategory.strCategory;
         }
 
         public async Task DrinkSelectionMenu(List<Drink> drinks)
@@ -38,11 +38,11 @@ namespace DrinksInfo
                 .Title("[bold]SELECT A DRINK:[/]")
                 .PageSize(15)
                 .AddChoices(drinks)
-                .UseConverter(d => $"{d.IdDrink}\t\t{d.StrDrink}"));
+                .UseConverter(d => $"{d.idDrink}\t\t{d.strDrink}"));
 
             DrinksService drinksService = new DrinksService();
 
-            await drinksService.GetDrink(selectedDrink.IdDrink);
+            await drinksService.GetDrink(selectedDrink.idDrink);
         }
 
         public static void ReturnToMainMenu()
